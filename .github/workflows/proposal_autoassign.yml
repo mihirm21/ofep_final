@@ -1,0 +1,36 @@
+name: Auto-assignment
+# description: Auto assignment of reviewers based on the proposal
+
+on:
+  issues:
+    types:
+        - opened
+
+jobs:
+    assign_reviewers:
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Check out code
+            uses: actions/checkout@v2
+            
+          - name: Set up Node.js
+            uses: actions/setup-node@v2
+            with:
+                node-version: '14'
+            
+          - name: Install dependencies
+            run: npm install
+
+          - name: Check if issue has [Proposal] label
+            id: check_proposal_label
+            run: |
+               echo "::set-output name=has_proposal_label::${{ contains(github.event.issue.title.*.name, '[Proposal]') }}"
+               echo "::set-output name=category::$echo ${{ github.event.issue.body }} | grep -oP '(?<=category: )\w+')"
+      
+            
+          - name: Run auto-assignment script
+            if: steps.check_proposal_label.outputs.has_proposal_label == 'true'
+            run: node assign_reviewers.js ${{ github.repository }} ${{ github.event.issue.number }} "${{ steps.check_proposal_label.outputs.category }}"
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
