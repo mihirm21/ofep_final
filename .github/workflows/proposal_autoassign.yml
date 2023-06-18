@@ -26,7 +26,7 @@ jobs:
             id: check_proposal_label
             run: |
                echo "has_proposal_label = ${{ contains(github.event.issue.title.*.name, '[Proposal]') }}" >> "$GITHUB_OUTPUT"
-               echo "category = $echo ${{ github.event.issue.body }} | grep -e Category -A2 | grep -v "Category" " >> "$GITHUB_OUTPUT"
+               echo "category = $echo ${{ github.event.issue.body }} | grep -e Category -A2 | grep -v 'Category' " >> "$GITHUB_OUTPUT"
        
             
           - name: Run auto-assignment script
