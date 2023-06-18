@@ -25,7 +25,7 @@ jobs:
           - name: Check if issue has [Proposal] label
             id: check_proposal_label
             run: |
-              echo "has_proposal_label = ${{ contains(github.event.issue.title.*.name, '[Proposal]') }}" >> "$GITHUB_OUTPUT"
+              echo "has_proposal_label = ${{ contains(github.event.issue.title, '[Proposal]') }}" >> "$GITHUB_OUTPUT"
               category=$(grep -Po '(?<=<body id="category-of-proposal">).*?(?=</body>)' ${{ github.event.issue.body }})
               echo "category = $category" >> "$GITHUB_OUTPUT"
  
