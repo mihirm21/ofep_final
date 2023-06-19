@@ -29,7 +29,7 @@ jobs:
             id: check_proposal_label
             run: |
               echo "has_proposal_label=${{ contains(github.event.issue.title, 'proposal') }}" >> "$GITHUB_OUTPUT"
-              category1=(grep "Category" -A2 ${{ github.event.issue.body }})
+              category1=(grep "Category" -A2 test.txt)
               category2=(grep -v "Category" $category1)
               category3=(grep "\S" $category2)
               echo "category<<EOF" >> $GITHUB_OUTPUT
