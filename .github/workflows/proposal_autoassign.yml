@@ -26,11 +26,11 @@ jobs:
           - name: Check if issue has [Proposal] label
             id: check_proposal_label
             run: |
-              echo "has_proposal_label = ${{ contains(github.event.issue.title, '[Proposal]') }}" >> "$GITHUB_OUTPUT
-              category1=$(grep -e "Category" -A2 <<< "${{ github.event.issue.body }}")
-              category2=$(grep -v "Category" <<< "$category1")
-              category=$(grep "\S" <<< "$category2")
-              echo "category = $category" >> "$GITHUB_OUTPUT"
+              echo "has_proposal_label = ${{ contains(github.event.issue.title, '[Proposal]') }}" >> $GITHUB_OUTPUT
+              category1=grep -e "Category" -A2 < ${{ github.event.issue.body }}
+              category2=grep -v "Category" $category1
+              category3=grep "\S" $category2
+              echo "category = $category3" >> $GITHUB_OUTPUT
             env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
