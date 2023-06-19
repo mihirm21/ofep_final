@@ -5,7 +5,8 @@ on:
   issues:
     types:
         - opened
-
+permissions:
+  issues: write
 jobs:
     assign_reviewers:
         runs-on: ubuntu-latest
@@ -26,12 +27,12 @@ jobs:
             id: check_proposal_label
             run: |
               echo "has_proposal_label = ${{ contains(github.event.issue.title, '[Proposal]') }}" >> "$GITHUB_OUTPUT"
-              category=$(grep -Po '<body id="Category of Proposal">\K.*?(?=<\/body>)' <<< "${{ github.event.issue.body }}")
+              category=$(grep -e "Category" -A2 test.txt | grep -v "Category" | grep "\S" <<< "${{ github.event.issue.body }}")
               echo "category = $category" >> "$GITHUB_OUTPUT"
  
             
           - name: Run auto-assignment script
-            if: steps.check_proposal_label.outputs.has_proposal_label == 'true'
+            if: ${{steps.check_proposal_label.outputs.has_proposal_label == 'true'}}
             run: node assign_reviewers.js ${{ github.repository }} ${{ github.event.issue.number }} "${{ steps.check_proposal_label.outputs.category }}"
             env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
