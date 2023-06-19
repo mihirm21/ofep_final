@@ -27,9 +27,10 @@ jobs:
             id: check_proposal_label
             run: |
               echo "has_proposal_label = ${{ contains(github.event.issue.title, '[Proposal]') }}" >> "$GITHUB_OUTPUT"
-              category=$(${{ github.event.issue.body }} | grep -e "Category" -A2 | grep -v "Category" | grep "\S")
+              category=${{ github.event.issue.body }} | grep -e "Category" -A2 | grep -v "Category" | grep "\S"
               echo "category = $category" >> "$GITHUB_OUTPUT"
- 
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
           - name: Run auto-assignment script
             if: ${{steps.check_proposal_label.outputs.has_proposal_label == 'true'}}
