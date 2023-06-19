@@ -21,7 +21,9 @@ jobs:
                 node-version: '14'
             
           - name: Install dependencies
-            run: npm install
+            run: |
+              npm install
+              npm install @octokit/rest
 
           - name: Check if issue has [Proposal] label
             id: check_proposal_label

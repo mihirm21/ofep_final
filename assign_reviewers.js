@@ -1,4 +1,4 @@
-import { Octokit } from "@octokit/rest";
+const { Octokit } = require("@octokit/rest");
 
 async function assignReviewers(org,repo, prNumber, category) {
   const octokit = new Octokit({
