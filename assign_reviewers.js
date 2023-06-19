@@ -7,16 +7,16 @@ async function assignReviewers(org,repo, prNumber, category) {
 
   });
   try {
-    const { data: prData } = await octokit.pulls.get({
-      owner: repo.split("/")[0],
-      repo: repo.split("/")[1],
-      pull_number: prNumber
-    });
+    // const { data: prData } = await octokit.pulls.get({
+    //   owner: repo.split("/")[0],
+    //   repo: repo.split("/")[1],
+    //   pull_number: prNumber
+    // });
 
     const { data: teams } = await octokit.teams.list({
       org: org
     });
-    if(teams.length === 0){
+    if(teams.length == 0){
       console.log(`No team found for the organisation"${org}".`);
       return;
     }
@@ -59,5 +59,8 @@ const org = "open-feature";
 const repo = process.argv[2];
 const prNumber = process.argv[3];
 const category = process.argv[4];
+// const repo = "open-feature/ofep";
+// const prNumber = "issues/65";
+// const category = "Specification";
 
 assignReviewers(org, repo, prNumber, category);
