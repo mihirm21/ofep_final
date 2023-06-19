@@ -60,5 +60,4 @@ const repo = process.argv[2];
 const prNumber = process.argv[3];
 const category = process.argv[4];
 
-
 assignReviewers(org, repo, prNumber, category);
