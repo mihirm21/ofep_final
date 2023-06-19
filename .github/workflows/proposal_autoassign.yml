@@ -31,7 +31,6 @@ jobs:
               category2=grep -v "Category" $category1
               category3=grep "\S" $category2
               echo "category=$category3" >> $GITHUB_OUTPUT
-            shell : bash
             env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
