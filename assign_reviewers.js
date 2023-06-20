@@ -16,7 +16,10 @@ async function assignReviewers(org,repo, prNumber, category) {
     // });
 
     const { data: teams } = await octokit.teams.list({
-      org: org
+      headers: {
+        authorization: auth.token,
+      },
+      org: org,
     });
     if(teams.length == 0){
       console.log(`No team found for the organisation"${org}".`);
