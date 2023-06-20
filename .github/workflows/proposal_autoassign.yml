@@ -24,6 +24,7 @@ jobs:
             run: |
               npm install
               npm install @octokit/rest
+              npm install @octokit/auth-action
 
           - name: Check if issue has [Proposal] label
             id: check_proposal_label
