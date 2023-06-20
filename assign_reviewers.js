@@ -15,12 +15,13 @@ async function assignReviewers(org,repo, prNumber, category) {
     //   pull_number: prNumber
     // });
 
-    const { data: teams } = await octokit.teams.list({
+    const { data: teams } = await octokit.request('GET /orgs/{org}/teams',({
       headers: {
         authorization: 'token ${process.env.GITHUB_TOKEN}'
       },
       org: org,
-    });
+    }));
+
     if(teams.length == 0){
       console.log(`No team found for the organisation"${org}".`);
       return;
