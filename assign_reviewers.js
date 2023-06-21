@@ -4,8 +4,8 @@ const auth = createActionAuth();
 
 async function assignReviewers(org,repo, prNumber, category) {
   const octokit = new Octokit({
-    // auth: '${{ secrets.GITHUB_TOKEN }}'
-    auth: process.env.GITHUB_TOKEN
+    auth: '${{secrets.GITHUB_TOKEN}}',
+    // auth: process.env.GITHUB_TOKEN
     // authentication : await auth()
   });
   try {
@@ -17,7 +17,7 @@ async function assignReviewers(org,repo, prNumber, category) {
 
     const { data: teams } = await octokit.request('GET /orgs/{org}/teams',({
       headers: {
-        authorization: 'token ${process.env.GITHUB_TOKEN}',
+        authorization: auth.token,
         'X-GitHub-Api-Version': '2022-11-28'
       },
       org: org,
