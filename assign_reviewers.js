@@ -17,7 +17,7 @@ async function assignReviewers(org,repo, prNumber, category) {
 
     const { data: teams } = await octokit.request('GET /orgs/{org}/teams',({
       headers: {
-        // authorization: 'token ${process.env.GITHUB_TOKEN}',
+        authorization: 'token ${process.env.GITHUB_TOKEN}',
         'X-GitHub-Api-Version': '2022-11-28'
       },
       org: org,
