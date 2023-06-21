@@ -36,10 +36,10 @@ jobs:
               echo "EOF" >> $GITHUB_OUTPUT
             shell: bash
             env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
           - name: Run auto-assignment script
             if: ${{steps.check_proposal_label.outputs.has_proposal_label == 'true'}}
             run: node assign_reviewers.js ${{ github.repository }} ${{ github.event.issue.number }} "${{ steps.check_proposal_label.outputs.category }}"
             env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              TOKEN: ${{ secrets.GITHUB_TOKEN }}
