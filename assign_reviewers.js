@@ -4,7 +4,7 @@ const auth = createActionAuth();
 
 async function assignReviewers(org,repo, prNumber, category) {
   const octokit = new Octokit({
-    auth: '${{secrets.GITHUB_TOKEN}}',
+    auth: secrets.GH_TOKEN,
     // auth: process.env.GITHUB_TOKEN
     // authentication : await auth()
   });
