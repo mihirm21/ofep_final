@@ -1,11 +1,11 @@
 const { Octokit } = require("@octokit/rest");
-const { createActionAuth } = require("@octokit/auth-action");
+// const { createActionAuth } = require("@octokit/auth-action");
 // const auth = createActionAuth();
 
 async function assignReviewers(org,repo, prNumber, category) {
   const octokit = new Octokit({
     // auth: secrets.GH_TOKEN,
-    // auth: process.env.TOKEN
+    auth: process.env.TOKEN
     // authentication : await auth()
   });
   try {
@@ -17,7 +17,7 @@ async function assignReviewers(org,repo, prNumber, category) {
 
     const { data: teams } = await octokit.request('GET /orgs/{org}/teams',({
       headers: {
-        // authorization: auth.token,
+        authorization: auth.token,
         'X-GitHub-Api-Version': '2022-11-28'
       },
       org: org,
