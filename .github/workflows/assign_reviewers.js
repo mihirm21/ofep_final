@@ -6,8 +6,6 @@ const repo = process.argv[2];
 const prNumber = process.argv[3];
 const category = process.argv[4];
 
-assignReviewers(org, repo, prNumber, category);
-
 async function assignReviewers(org,repo, prNumber, category) {
   const octokit = new Octokit({
     auth: process.env.TOKEN
@@ -20,7 +18,7 @@ async function assignReviewers(org,repo, prNumber, category) {
       org: org,
     }));
 
-    if(teams.length == 0){
+    if(teams.length === 0){
       console.log(`No team found for the organisation"${org}".`);
       return;
     }
@@ -36,7 +34,7 @@ async function assignReviewers(org,repo, prNumber, category) {
     });
     console.log(`Teams assigned successfully.`);
     } // assigns the Proposal issue with "OpenFeature Operator" or "Flagd" category to all the "cloud-native-maintainers"
-     else if(category == "OpenFeature Operator" || category == "Flagd"){
+     else if(category === "OpenFeature Operator" || category === "Flagd"){
     const team_updated = teams.filter((team) => team.slug.startsWith("cloud-native") && team.slug.endsWith("maintainers"));
     const team_Slugs_updated = team_updated.map((team) => team.slug);
     await octokit.pulls.requestReviewers({
@@ -53,3 +51,5 @@ async function assignReviewers(org,repo, prNumber, category) {
     console.error("An error occurred:", error);
   }
 }
+
+assignReviewers(org, repo, prNumber, category);
