@@ -1,11 +1,19 @@
 {
-  "name": "ofep_final",
+  "name": "ofep",
   "version": "1.0.0",
-  "description": "This repository serves as a focal point for research and experimental work. It also enables the creation of discussions, proposals and ideation through issues.",
-  "main": "assign_reviewers.js",
+  "description": "A focal point for OpenFeature research, proposals and requests for comments",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/open-feature/ofep.git"
+  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/open-feature/ofep/issues"
+  },
+  "homepage": "https://github.com/open-feature/ofep#readme"
 }
