@@ -27,13 +27,14 @@ jobs:
             id: check_proposal_label
             run: |
               echo "has_proposal_label=${{ contains(github.event.issue.title, 'proposal') }}" >> "$GITHUB_OUTPUT"
-              category3=$(echo "${{ github.event.issue.body }}" | grep -e "Category" -A2 | grep -v "Category" | grep "\S")
-              echo "category=$category3" >> "$GITHUB_OUTPUT"
             shell: bash
             
           - name: Run auto-assignment script
             if: ${{steps.check_proposal_label.outputs.has_proposal_label == 'true'}}
-            run: node .github/workflows/assign_reviewers.js ${{ github.repository }} ${{ github.event.issue.number }} "${{ steps.check_proposal_label.outputs.category }}"
+            run: |
+               category3=$(echo "${{ github.event.issue.body }}" | grep -e "Category" -A2 | grep -v "Category" | grep "\S")
+               echo "category=$category3" >> "$GITHUB_OUTPUT"
+               node .github/workflows/assign_reviewers.js ${{ github.repository }} ${{ github.event.issue.number }} "${{ steps.check_proposal_label.outputs.category }}"
             env:
               TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
