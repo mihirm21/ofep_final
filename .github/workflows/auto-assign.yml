@@ -5,24 +5,24 @@ on:
   pull_request:
     types: [opened, edited, labeled, unlabeled]
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check if issue has [Proposal] label
-        id: check_proposal_label
-        run: |
-          echo "has_proposal_label=${{ contains(github.event.issue.title, 'proposal') }}" >> "$GITHUB_OUTPUT"
-        shell: bash
+    auto_assign:
+        runs-on: ubuntu-latest
 
-      - name : Auto Assign
-        uses: wow-actions/auto-assign@v3
-        if: steps.check_proposal_label.outputs.has_proposal_label == 'true'
-        with:
-          GITHUB_TOKEN: ${{ secrets.ACTIONS}}
-          # using the `org/team_slug` or `/team_slug` syntax to add git team as reviewers
-          reviewers: mihirm21
-          assignees: mihirm21
-          skipKeywords: draft
-          addAssignees: true
-        
+        steps:
+            - name: Check if issue has [Proposal] label
+              id: check_proposal_label
+              run: |
+                echo "has_proposal_label=${{ contains(github.event.issue.title, 'proposal') }}" >> "$GITHUB_OUTPUT"
+                shell: bash
+
+            - name : Auto Assign
+              if: ${{steps.check_proposal_label.outputs.has_proposal_label == 'true'}}
+              uses: wow-actions/auto-assign@v3
+              with:
+                GITHUB_TOKEN: ${{ secrets.ACTIONS }}
+                # using the `org/team_slug` or `/team_slug` syntax to add git team as reviewers
+                reviewers: mihirm21
+                assignees: mihirm21
+                skipKeywords: draft
+    
           
