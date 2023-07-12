@@ -26,9 +26,9 @@ async function assigner(repo, prNumber) {
 }
 
 async function assignReviewers(repo, prNumber, category) {
-  // const octokit = new Octokit({
-  //   auth: process.env.TOKEN
-  // });
+  const octokit = new Octokit({
+    auth: process.env.TOKEN
+  });
   try {
     // const { data: teams } = await octokit.request('GET /orgs/{org}/teams', ({
     //   org: repo.split("/")[0],
