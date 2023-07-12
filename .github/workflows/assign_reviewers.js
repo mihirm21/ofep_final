@@ -34,18 +34,18 @@ async function assignReviewers(repo, prNumber, category) {
     //   org: repo.split("/")[0],
     // }));
 
-    // if (teams.length === 0) {
+    // if (teams.length === 0) { 
     //   console.log(`No team found for the organization"${org}".`);
     //   return;
     // }
-    console.log(`mic-testing`);
+    console.log(`mic-testing\n`);
     // assigns the Proposal issue with "SDK" or "Specification" category to all the "sdk-maintainers"
-    if (["SDKs", "Specification"].includes(category)) {
+    if (["SDKs\n", "Specification\n"].includes(category)) {
       // const team_updated = teams.filter((team) => team.slug.startsWith("sdk") && team.slug.endsWith("maintainers"));
       // const team_Slugs_updated = team_updated.map((team) => team.slug);
       assigner(repo, prNumber);
     } // assigns the Proposal issue with "OpenFeature Operator" or "Flagd" category to all the "cloud-native-maintainers"
-    else if (["Flagd", "OpenFeature Operator"].includes(category)) {
+    else if (["Flagd\n", "OpenFeature Operator\n"].includes(category)) {
       // const team_updated = teams.filter((team) => team.slug.startsWith("cloud-native") && team.slug.endsWith("maintainers"));
       // const team_Slugs_updated = team_updated.map((team) => team.slug);
       assigner(repo, prNumber);
