@@ -6,7 +6,7 @@ const repo = process.argv[2];
 const prNumber = process.argv[3];
 const category = process.argv[4];
 
-async function assigner(repo, prNumber, team_Slugs_updated) {
+async function assigner(repo, prNumber) {
   const octokit = new Octokit({
     auth: process.env.TOKEN
   });
@@ -22,7 +22,7 @@ async function assigner(repo, prNumber, team_Slugs_updated) {
   }
 }
 
-async function assignReviewers(org, repo, prNumber, category) {
+async function assignReviewers(repo, prNumber, category) {
   const octokit = new Octokit({
     auth: process.env.TOKEN
   });
@@ -54,5 +54,6 @@ async function assignReviewers(org, repo, prNumber, category) {
   // } catch (error) {
   //   console.error("An error occurred:", error);
   }
+}
 
 assignReviewers(repo, prNumber, category);
