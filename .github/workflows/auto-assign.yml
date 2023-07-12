@@ -23,5 +23,6 @@ jobs:
           reviewers: mihirm21
           assignees: mihirm21
           skipKeywords: draft
+          addAssignees: true
         
           
