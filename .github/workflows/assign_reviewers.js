@@ -46,6 +46,7 @@ async function assignReviewers(repo, prNumber, category) {
       assigner(repo, prNumber);
     } // assigns the Proposal issue with "OpenFeature Operator" or "Flagd" category to all the "cloud-native-maintainers"
     else if (["Flagd\n", "OpenFeature Operator\n"].includes(category)) {
+      console.log(`oops\n`);
       // const team_updated = teams.filter((team) => team.slug.startsWith("cloud-native") && team.slug.endsWith("maintainers"));
       // const team_Slugs_updated = team_updated.map((team) => team.slug);
       assigner(repo, prNumber);
