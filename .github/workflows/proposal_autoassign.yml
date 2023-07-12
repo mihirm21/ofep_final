@@ -33,7 +33,7 @@ jobs:
             id: check_proposal_label_1
             if: ${{steps.check_proposal_label.outputs.has_proposal_label == 'true'}}
             run: |
-               category3=$(echo "${{ github.event.issue.body }}" | grep -e "Category" -A2 | grep -v "Category" | grep "\S")
+               category3=$(echo "${{ github.event.issue.body }}" | grep -e "Category" -A2 | grep -v "Category" | grep "\S" | tr --delete '\n')
                echo "category=$category3" >> "$GITHUB_OUTPUT"
             shell: bash
 
