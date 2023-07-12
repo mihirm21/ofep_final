@@ -38,7 +38,7 @@ async function assignReviewers(repo, prNumber, category) {
     //   console.log(`No team found for the organization"${org}".`);
     //   return;
     // }
-    console.log(`mic-testing"${org}".`);
+    console.log(`mic-testing`);
     // assigns the Proposal issue with "SDK" or "Specification" category to all the "sdk-maintainers"
     if (["SDKs", "Specification"].includes(category)) {
       // const team_updated = teams.filter((team) => team.slug.startsWith("sdk") && team.slug.endsWith("maintainers"));
