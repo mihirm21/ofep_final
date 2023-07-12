@@ -12,6 +12,9 @@ async function assigner(repo, prNumber) {
   });
   try {
     await octokit.pulls.requestReviewers({
+      headers: {
+            'X-GitHub-Api-Version': '2022-11-28'
+          },
       owner: repo.split("/")[0],
       repo: repo.split("/")[1],
       pull_number: prNumber,
@@ -23,14 +26,11 @@ async function assigner(repo, prNumber) {
 }
 
 async function assignReviewers(repo, prNumber, category) {
-  const octokit = new Octokit({
-    auth: process.env.TOKEN
-  });
+  // const octokit = new Octokit({
+  //   auth: process.env.TOKEN
+  // });
   try {
     // const { data: teams } = await octokit.request('GET /orgs/{org}/teams', ({
-    //   headers: {
-    //     'X-GitHub-Api-Version': '2022-11-28'
-    //   },
     //   org: repo.split("/")[0],
     // }));
 
