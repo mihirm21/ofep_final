@@ -25,9 +25,9 @@ It is unlikely an enhancement if it is:
 - adding error messages or events
 - a thing that affects only a single language or implementation
 
-**Note**: The above lists are intended only as examples and are not meant to be exhaustive. If you don't know whether a change requires an OFEP, please feel free ping someone listed in [sdk-maintainers and cloud-native maintainers](https://github.com/orgs/open-feature/teams) (or) ask in the[CNCF OpenFeature Slack channel](https://cloud-native.slack.com/archives/C0344AANLA1). If you are new, you can create a CNCF Slack account [here](https://slack.cncf.io/).
+**Note**: The above lists are intended only as examples and are not meant to be exhaustive. If you don't know whether a change requires an OFEP, please feel free ping someone listed in [sdk-maintainers and cloud-native maintainers](https://github.com/orgs/open-feature/teams) (or) ask in the [CNCF OpenFeature Slack channel](https://cloud-native.slack.com/archives/C0344AANLA1). If you are new, you can create a CNCF Slack account [here](https://slack.cncf.io/).
 
-### OFEP scope
+### OFEP Scope
 
 While OFEPs are intended for "significant" changes, we recommend trying to keep each OFEP's scope as small as makes sense (eg. on broader scale, mentioning the category of the proposal). A general rule of thumb is that if the core functionality proposed could still provide value without a particular piece, then that piece should be removed from the proposal and used instead as an *example* (and, ideally, given its own OFEP!).
 
