@@ -1,7 +1,7 @@
 // assigns reviewers based on the category of the [Proposal] issue
 const { Octokit } = require("@octokit/rest");
 
-const org = "open-feature";
+// const org = "open-feature";
 const repo = process.argv[2];
 const prNumber = process.argv[3];
 const category = process.argv[4];
@@ -15,7 +15,6 @@ async function assigner(repo, prNumber, team_Slugs_updated) {
       owner: repo.split("/")[0],
       repo: repo.split("/")[1],
       pull_number: prNumber,
-      team_reviewers: team_Slugs_updated
     });
     console.log(`Teams assigned successfully.`);
   } catch (error) {
@@ -32,23 +31,23 @@ async function assignReviewers(org, repo, prNumber, category) {
       headers: {
         'X-GitHub-Api-Version': '2022-11-28'
       },
-      org: org,
+      org: repo.split("/")[0],
     }));
 
-    if (teams.length === 0) {
-      console.log(`No team found for the organization"${org}".`);
-      return;
-    }
+    // if (teams.length === 0) {
+    //   console.log(`No team found for the organization"${org}".`);
+    //   return;
+    // }
     // assigns the Proposal issue with "SDK" or "Specification" category to all the "sdk-maintainers"
     if (["SDKs", "Specification"].includes(category)) {
-      const team_updated = teams.filter((team) => team.slug.startsWith("sdk") && team.slug.endsWith("maintainers"));
-      const team_Slugs_updated = team_updated.map((team) => team.slug);
-      assigner(repo, prNumber, team_Slugs_updated);
+      // const team_updated = teams.filter((team) => team.slug.startsWith("sdk") && team.slug.endsWith("maintainers"));
+      // const team_Slugs_updated = team_updated.map((team) => team.slug);
+      assigner(repo, prNumber);
     } // assigns the Proposal issue with "OpenFeature Operator" or "Flagd" category to all the "cloud-native-maintainers"
     else if (["Flagd", "OpenFeature Operator"].includes(category)) {
-      const team_updated = teams.filter((team) => team.slug.startsWith("cloud-native") && team.slug.endsWith("maintainers"));
-      const team_Slugs_updated = team_updated.map((team) => team.slug);
-      assigner(repo, prNumber, team_Slugs_updated);
+      // const team_updated = teams.filter((team) => team.slug.startsWith("cloud-native") && team.slug.endsWith("maintainers"));
+      // const team_Slugs_updated = team_updated.map((team) => team.slug);
+      assigner(repo, prNumber);
     } else {
       console.log(`No team found for the category "${category}".`);
     }
@@ -57,4 +56,4 @@ async function assignReviewers(org, repo, prNumber, category) {
   }
 }
 
-assignReviewers(org, repo, prNumber, category);
+assignReviewers(repo, prNumber, category);
