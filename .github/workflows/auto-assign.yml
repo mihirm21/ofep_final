@@ -14,6 +14,7 @@ jobs:
                 GITHUB_TOKEN: ${{ secrets.ACTIONS }}
                 # using the `org/team_slug` or `/team_slug` syntax to add git team as reviewers
                 reviewers: mihirm21
-                assignees: mihirm21
+                assignees: | 
+                        /authors
     
           
