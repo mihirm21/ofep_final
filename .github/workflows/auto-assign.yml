@@ -16,5 +16,8 @@ jobs:
                 reviewers: mihirm21
                 assignees: | 
                         /authors
+                        mihir
+                        mihirm21
+                numberOfAssignees: 0
     
           
