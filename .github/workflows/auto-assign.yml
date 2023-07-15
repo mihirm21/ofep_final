@@ -1,24 +1,20 @@
-name: Auto Assign
-on:
-  issues:
-    types: [opened, edited, labeled, unlabeled]
-  pull_request:
-    types: [opened, edited, labeled, unlabeled]
-jobs:
-      run:
-        runs-on: ubuntu-latest
+name: Issue assignment
 
+on:
+    issues:
+        types: [opened,edited]
+
+jobs:
+    auto-assign:
+        runs-on: ubuntu-latest
+        permissions:
+            issues: write
         steps:
-             - uses: wow-actions/auto-assign@v3.0.2
-               with:
-                GITHUB_TOKEN: ${{ secrets.ACTIONS }}
-                # using the `org/team_slug` or `/team_slug` syntax to add git team as reviewers
-                reviewers: op
-                assignees: | 
-                        mihir
-                        mihirm21
-                        op
-                        mihirm21
-                numberOfAssignees: 0
+            - name: 'Auto-assign issue'
+              uses: pozil/auto-assign-issue@v1
+              with:
+                  assignees: mihirm21
+                  # numOfAssignee: 2
+                  allowSelfAssign: true
     
           
