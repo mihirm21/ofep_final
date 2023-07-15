@@ -29,17 +29,17 @@ jobs:
             uses: pozil/auto-assign-issue@v1
             with:
                 assignees: mihirm21
-                numOfAssignee: 0
+                numOfAssignee: 5
                 removePreviousAssignees: true
                 allowSelfAssign: true
           
-          # - name: 'Auto-assign issue2'
-          #   if: ${{steps.check_proposal_label_1.outputs.category == 'Flagd' || 'OpenFeatureOperator'}}
-          #   uses: pozil/auto-assign-issue@v1
-          #   with:
-          #       assignees: mihirm21
-          #       # numOfAssignee: 2
-                # removePreviousAssignees: true   
-          #       allowSelfAssign: true
+          - if: ${{ (steps.check_proposal_label_1.outputs.category == 'Flagd') || (steps.check_proposal_label_1.outputs.category == 'OpenFeatureOperator')}}
+            name: 'Auto-assign issue1'
+            uses: pozil/auto-assign-issue@v1
+            with:
+                assignees: mihirm21
+                numOfAssignee: 5
+                removePreviousAssignees: true
+                allowSelfAssign: true
           
 
