@@ -24,8 +24,8 @@ jobs:
                 echo "category=$category3" >> "$GITHUB_OUTPUT"
             shell: bash
 
-          - name: 'Auto-assign issue1'
-            if: ${{steps.check_proposal_label_1.outputs.category == 'SDKs' || 'Specification'}}
+          - if: ${{steps.check_proposal_label_1.outputs.category == 'SDKs' || 'Specification'}}
+            name: 'Auto-assign issue1'
             uses: pozil/auto-assign-issue@v1
             with:
                 assignees: mihirm21
