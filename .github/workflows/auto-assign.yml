@@ -10,11 +10,16 @@ jobs:
         permissions:
             issues: write
         steps:
-            - name: 'Auto-assign issue'
-              uses: pozil/auto-assign-issue@v1
-              with:
-                  assignees: mihirm21
-                  # numOfAssignee: 2
-                  allowSelfAssign: true
-    
-          
+          - name: Check if issue has [Proposal] label
+            id: check_proposal_label
+            run: |
+                echo "has_proposal_label=${{ contains(github.event.issue.title, 'proposal') }}" >> "$GITHUB_OUTPUT"
+            shell: bash
+
+          - name: 'Auto-assign issue'
+            if: ${{steps.check_proposal_label.outputs.has_proposal_label == 'true'}}
+            uses: pozil/auto-assign-issue@v1
+            with:
+                assignees: mihirm21
+                # numOfAssignee: 2
+                allowSelfAssign: true
