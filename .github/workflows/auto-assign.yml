@@ -32,12 +32,12 @@ jobs:
                 numOfAssignee: 0
                 allowSelfAssign: true
           
-          - name: 'Auto-assign issue2'
-            if: ${{steps.check_proposal_label_1.outputs.category == 'Flagd' || 'OpenFeatureOperator'}}
-            uses: pozil/auto-assign-issue@v1
-            with:
-                assignees: mihirm21
-                # numOfAssignee: 2
-                allowSelfAssign: true
+          # - name: 'Auto-assign issue2'
+          #   if: ${{steps.check_proposal_label_1.outputs.category == 'Flagd' || 'OpenFeatureOperator'}}
+          #   uses: pozil/auto-assign-issue@v1
+          #   with:
+          #       assignees: mihirm21
+          #       # numOfAssignee: 2
+          #       allowSelfAssign: true
           
 
