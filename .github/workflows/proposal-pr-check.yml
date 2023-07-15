@@ -30,6 +30,6 @@ jobs:
         run: |
           for file in ${{ steps.added-files.outputs.added_files }}; do
             echo "$file was added"
-            status1 = $(echo "$file" | grep -oP '(?<=State: )\w+')
+            status1 = $(echo $file | grep -oP '(?<=State: )\w+')
             echo "status=$status1" >> "$GITHUB_OUTPUT"
           done
