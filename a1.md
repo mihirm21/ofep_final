@@ -1,6 +1,6 @@
 ## Add dispose functionality to API
 
-## State: APPROVED
+## State: DRAFTING
 
 The goal of this OFEP is to enhance the OpenFeature API to allow authors to cleanly dispose of any resources consumed by OpenFeature providers.
 
