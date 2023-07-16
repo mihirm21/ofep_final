@@ -33,7 +33,7 @@ jobs:
         run: |
           for file in ${{ steps.added-files.outputs.added_files }}; do
             echo "$file was added"
-            status=$(grep -e "State" "$file" | tr -d "## State: " | tr -d '"')" 
+            status=$(grep -e "State" "$file" | tr -d "## State: " | tr -d '"')
             if [[status != "APPROVED" || status != "REJECTED" || STATUS != "WITHDRAWN"]]; then
               echo "status is not approved"
               exit 1
