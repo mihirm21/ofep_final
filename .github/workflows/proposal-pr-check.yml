@@ -30,12 +30,15 @@ jobs:
         #   since_last_remote_commit: true 
 
       - name: List all added files
+        id: list-added-files
         run: |
           for file in ${{ steps.added-files.outputs.added_files }}; do
             echo "$file was added"
-            status=$(grep -e "State" "$file" | tr -d "## State: " | tr -d '"')
-            if [[status != "APPROVED" || status != "REJECTED" || STATUS != "WITHDRAWN"]]; then
-              echo "status is not approved"
-              exit 1
-            fi
+            echo "status=$(grep -e "State" "$file" | tr -d "## State: " | tr -d '"')" >> "$GITHUB_OUTPUT"
           done
+
+      - if: ${{ (steps.list-added-files.outputs.status != 'REJECTED') && (steps.list-added-files.outputs.status != 'WITHDRAWN') }}
+        name: Exit with error
+        run: |
+          echo "status is not approved"
+          exit 1
