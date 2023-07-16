@@ -33,5 +33,5 @@ jobs:
         run: |
           for file in ${{ steps.added-files.outputs.added_files }}; do
             echo "$file was added"
-            echo "status=$(grep -e "State" "$file" | tr -d "## State: " | tr -d '"') " >> "$GITHUB_OUTPUT"
+            echo "status=$(grep -e "State" "$file" | tr -d "## State: " | tr -d '"')"
           done
