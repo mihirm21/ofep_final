@@ -19,7 +19,7 @@ jobs:
         uses: tj-actions/changed-files@v37
         with: 
           files: |
-            OFEP-*.md
+            OFEP*.md
       
       - if: ${{ steps.added-files.outputs.added_files == '' }}
         name: No check needed
