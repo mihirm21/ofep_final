@@ -18,7 +18,14 @@ jobs:
         id: added-files
         uses: tj-actions/changed-files@v37
         with: 
-          files: 'OFEP-*'
+          files: |
+            OFEP-*.md
+      
+      - if: ${{ steps.added-files.outputs.added_files == '' }}
+        name: No check needed
+        run: |
+          echo "No OFEP proposals were added"
+          exit 0
         
       - name: List all added files
         id: list-added-files
