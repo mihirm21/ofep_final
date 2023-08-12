@@ -22,7 +22,7 @@ jobs:
           message: |
             Hello :wave:, The PR is eligible to merge. It will be automerged if not raised any issues.
           reactions: eyes, rocket
-          GITHUB_TOKEN: ${{ secrets.ACTION_WRITE }}
+          GITHUB_TOKEN: ${{ secrets.ACTIONS }}
           pr_number: ${{ github.event.pull_request.number }}
           create_if_not_exists: true
         
@@ -40,7 +40,7 @@ jobs:
 #                   The PR is being built...
 #             comment_tag: to_delete
 #             mode: delete
-#             GITHUB_TOKEN: ${{ secrets.ACTION_WRITE }}
+#             GITHUB_TOKEN: ${{ secrets.ACTIONS }}
 #             pr_number: ${{ github.event.pull_request.number }}
 
 
