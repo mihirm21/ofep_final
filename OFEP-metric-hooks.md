@@ -72,7 +72,7 @@ NewMetricsHook(reader,
         }))
 ```
 
-Given below are proposed extra dimensions.
+Given below are extra proposed dimensions.
 
 ### Scope (mapped from flag metadata)
 
