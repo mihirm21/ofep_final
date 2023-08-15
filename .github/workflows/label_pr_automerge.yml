@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: 
         pull-requests: write 
-    if: github.event.review.state == 'approved'
+    if: ${{ github.event.review.state == 'approved' }}
     name: job for commenting on PR when approved
     steps:
       - name: Checkout
@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: 
         pull-requests: write 
-    if: github.event.review.state != 'approved'
+    if: ${{ github.event.review.state != 'approved' }}
     name: deleting the comment
     steps:
         - name: Write a comment that will be deleted at the end of the job
