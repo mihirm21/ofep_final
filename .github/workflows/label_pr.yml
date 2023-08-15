@@ -14,7 +14,7 @@ jobs:
         - name: find current day
           id: find_day
           run: |
-            date1=$(echo date +%A)
+            date1=$(date +"%a")
             echo "day=$date1" >> "$GITHUB_OUTPUT"
           shell: bash
     
