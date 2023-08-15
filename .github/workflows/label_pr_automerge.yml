@@ -6,24 +6,24 @@ on:
  
 
 jobs:
-  example_comment_pr:
-    runs-on: ubuntu-latest
-    permissions: 
-        pull-requests: write 
-    # if: github.event.review.state == 'approved'
-    name: job for commenting on PR when approved
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  # example_comment_pr:
+  #   runs-on: ubuntu-latest
+  #   permissions: 
+  #       pull-requests: write 
+  #   # if: github.event.review.state == 'approved'
+  #   name: job for commenting on PR when approved
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
 
-      - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            Hello :wave:, The PR is eligible to merge. It will be automerged if not raised any issues.
-          # reactions: eyes, rocket
-          pr_number: ${{ github.event.pull_request.number }}
-          create_if_not_exists: true
+  #     - name: Comment PR
+  #       uses: thollander/actions-comment-pull-request@v2
+  #       with:
+  #         message: |
+  #           Hello :wave:, The PR is eligible to merge. It will be automerged if not raised any issues.
+  #         # reactions: eyes, rocket
+  #         pr_number: ${{ github.event.pull_request.number }}
+  #         create_if_not_exists: true
 
         
   delete_comment:
@@ -36,10 +36,13 @@ jobs:
         - name: Write a comment that will be deleted at the end of the job
           uses: thollander/actions-comment-pull-request@v2
           with:
+            # message: |
+            #       Hello :wave:, The PR is eligible to merge. It will be automerged if not raised any issues.
+            # comment_tag: to_delete
+            # mode: delete
             message: |
-                  Hello :wave:, The PR is eligible to merge. It will be automerged if not raised any issues.
-            comment_tag: to_delete
-            mode: delete
+                 _execution **${{ github.run_id }}** / attempt **${{ github.run_attempt }}**)_
+            comment_tag: execution
             pr_number: ${{ github.event.pull_request.number }}
 
         
