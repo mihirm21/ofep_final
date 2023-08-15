@@ -24,6 +24,6 @@ jobs:
            labels: |
                automerge ${{ steps.find_day.outputs.day }}
            number: ${{ github.event.pull_request.number }}
-           github_token:  ${{ secrets.GITHUB_TOKEN }}
+           github_token:  ${{ secrets.LABEL_TOKEN }}
            
         
