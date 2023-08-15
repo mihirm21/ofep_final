@@ -7,7 +7,7 @@ than the full TCP/IP stack. There are also permission benefits around using a so
 This OFEP outlines an approach to use gRPC over Unix sockets to enable this.
 
 <img src="images/006-01.png" width="300">
-
+skemkws
 ## Background
 
 It is possible within golang to use a unix socket as a `*net.Conn`
