@@ -24,7 +24,7 @@ jobs:
           reactions: eyes, rocket
           pr_number: ${{ github.event.pull_request.number }}
           create_if_not_exists: true
-          GITHUB_TOKEN: ${{ secrets.ACTIONS }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         
   # delete_comment:
@@ -43,6 +43,5 @@ jobs:
   #           mode: delete
   #           GITHUB_TOKEN: ${{ secrets.ACTIONS }}
   #           pr_number: ${{ github.event.pull_request.number }}
-
 
         
