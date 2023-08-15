@@ -7,7 +7,7 @@ Client side applications (e.g. web/mobile) could benefit from access to feature 
 _Withdrawn for the following reasons:_
 - _There's a huge variety of unknown deployment patterns by potential users. Catering to one likely means scope creep to support many in future. Perhaps this is the future path of OFO but an agreement has been reached that it is best to keep things simple and minimally scoped at this stage (until common deployment patterns are more established)._
 - _OFO would require CRUD permissions for HTTPRoutes & Gateways, introducing security concerns._
-- _Kubernetes Gateway API is still in beta._
+- _Kubernetes Gateway API is stiijmumju
 
 _[OFEP for an alternative solution](./OFEP-ofo-flag-service.md)._
 
