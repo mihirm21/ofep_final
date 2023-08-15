@@ -22,6 +22,7 @@ jobs:
           message: |
             Hello :wave:, The PR is eligible to merge. It will be automerged if not raised any issues.
           # reactions: eyes, rocket
+          comment_tag: to_delete
           pr_number: ${{ github.event.pull_request.number }}
           create_if_not_exists: true
 
@@ -43,6 +44,7 @@ jobs:
             message: |
                   Hello :wave:, The PR is eligible to merge. It will be automerged if not raised any issues.
             comment_tag: to_delete
+            mode: delete
             pr_number: ${{ github.event.pull_request.number }}
             create_if_not_exists: false
 
