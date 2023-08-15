@@ -10,11 +10,19 @@ jobs:
         steps:
         - name: checkout
           uses: actions/checkout@v2
+        
+        - name: find current day
+          id: find_day
+          run: |
+            date1=$(echo date +%A)
+            echo "day=$date1" >> "$GITHUB_OUTPUT"
+          shell: bash
     
         - name: add labels
           uses: actions-ecosystem/action-add-labels@v1
           with:
            labels: |
-               automerge
+               automerge ${{ steps.find_day.outputs.day }}
            number: ${{ github.event.pull_request.number }}
+           
         
