@@ -17,15 +17,24 @@ def label_pull_request(pull_request_number, labels):
     response = requests.post(url, json=labels, headers=headers)
     response.raise_for_status()
 
-if __name__ == "__main__":
-    event_data = json.loads(os.environ.get("GITHUB_EVENT_PATH", "{}"))
-    pull_request_number = event_data.get("pull_request", {}).get("number")
+def main():
+    event_path = os.environ.get("GITHUB_EVENT_PATH")
     
-    if pull_request_number:
-        labels = {
-            "labels": ["automerge"]  # Customize the labels as needed
-        }
-        label_pull_request(pull_request_number, labels)
-        print("Labels added successfully.")
+    if event_path:
+        with open(event_path, "r") as event_file:
+            event_data = json.load(event_file)
+            pull_request_number = event_data.get("pull_request", {}).get("number")
+            
+            if pull_request_number:
+                labels = {
+                    "labels": ["automerge"]  # Customize the labels as needed
+                }
+                label_pull_request(pull_request_number, labels)
+                print("Labels added successfully.")
+            else:
+                print("No pull request number found in the event data.")
     else:
-        print("No pull request number found in the event data.")
+        print("GITHUB_EVENT_PATH not set. Are you running the script outside GitHub Actions?")
+
+if __name__ == "__main__":
+    main()

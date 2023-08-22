@@ -44,11 +44,15 @@ jobs:
         with:
           python-version: 3.x
 
+      - name: Print Event Payload
+        run: cat $GITHUB_EVENT_PATH
+
       - name: Run Python Script
         run: |
-          pip3 install requests
-          python3 label_prs.py
+          pip install requests
+          python scripts/label_prs.py
         env:
           GITHUB_TOKEN: ${{ secrets.LABEL_TOKEN }}
+
            
         
