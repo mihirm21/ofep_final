@@ -50,7 +50,7 @@ jobs:
       - name: Run Python Script
         run: |
           pip install requests
-          python scripts/label_prs.py
+          python label_prs.py
         env:
           GITHUB_TOKEN: ${{ secrets.LABEL_TOKEN }}
 
