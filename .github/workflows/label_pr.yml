@@ -26,6 +26,34 @@
 #            number: ${{ github.event.pull_request.number }}
 #            github_token:  ${{ secrets.GITHUB_TOKEN }}
 
+# name: label_pr
+
+# on:
+#   pull_request_review:
+#     types: [submitted]
+
+# jobs:
+#   add_labels:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: 3.x
+
+#       - name: Print Event Payload
+#         run: cat $GITHUB_EVENT_PATH
+
+#       - name: Run Python Script
+#         run: |
+#           pip install requests
+#           python label_prs.py
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.LABEL_TOKEN }}
+
 name: label_pr
 
 on:
@@ -43,14 +71,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.x
-
+          
       - name: Print Event Payload
         run: cat $GITHUB_EVENT_PATH
 
       - name: Run Python Script
         run: |
           pip install requests
-          python label_prs.py
+          python label_prs.py ${{ github.event.pull_request.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.LABEL_TOKEN }}
 
