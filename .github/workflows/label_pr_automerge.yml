@@ -25,7 +25,7 @@ jobs:
           # reactions: eyes, rocket
           comment_tag: to_delete
           pr_number: ${{ github.event.pull_request.number }}
-          create_if_not_exists: true
+          create_if_not_exists: false
 
         
   delete_comment:
