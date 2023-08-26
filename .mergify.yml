@@ -1,0 +1,10 @@
+pull_request_rules:
+  - name: Dispatch GitHub Actions
+    conditions:
+      - label=dispatch
+    actions:
+      github_actions:
+        workflow:
+          dispatch:
+            - inputs: {}
+              workflow: label_pr.yaml
