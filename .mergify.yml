@@ -1,10 +1,17 @@
 pull_request_rules:
   - name: Dispatch GitHub Actions
     conditions:
-      - label=dispatch
+     - label=automerge Tue
     actions:
       github_actions:
         workflow:
           dispatch:
             - inputs: {}
               workflow: label_pr.yaml
+  - name: Automatic merge on approval
+    conditions:
+      - "#approved-reviews-by>=1"
+      - label=automerge
+    actions:
+      merge:
+        method: merge
