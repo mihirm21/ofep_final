@@ -3,7 +3,7 @@
 ## State: APPROVED
 
 As a part of the Provider implementation by the Flag Management Systen, there is a need to have standardized support for hooks specific to the Provider. The 
-Provider Hook(s) should be specific to the provider implementation and implement the various defined stages of the Hook interface as applicable to the 
+Provider Hook(s) should be specific to the provider implementation and implement the various defined stages of the Hook interface as applicable to the dnd
 specific provider. 
 
 ## Assumptions
