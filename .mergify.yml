@@ -28,7 +28,7 @@ pull_request_rules:
     conditions:
       - "#approved-reviews-by>=1"
       - label=automerge
-      - updated-at>1 days ago
+      - updated-at>3 days ago
       - schedule=Mon-Sun 01:00-23:00[America/Vancouver]
     actions:
       merge:
