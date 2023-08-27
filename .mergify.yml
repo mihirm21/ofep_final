@@ -1,13 +1,4 @@
 pull_request_rules:
-#   - name: Dispatch GitHub Actions
-#     conditions:
-#      - label=automerge Tue
-#     actions:
-#       github_actions:
-#         workflow:
-#           dispatch:
-#             - inputs: {}
-#               workflow: label_pr.yaml
   - name: Label the approved PRs
     conditions:
       - "#approved-reviews-by>=1"
@@ -17,20 +8,28 @@ pull_request_rules:
       label:
         add:
           - automerge
-  - name: Remove the label and comment
+  - name: Remove the label
     conditions:
       - "changes-requested-reviews-by>=1"
     actions:
       label:
         remove:
           - automerge
-  - name: Merging an approved PR after 3 working days
+  - name: Merging an approved PR after 3 working days_1
     conditions:
       - "#approved-reviews-by>=1"
       - label=automerge
-      - updated-at>1 days ago
-      - schedule=Mon-Sun 01:00-23:00[America/Vancouver]
+      - updated-at<3 days ago
+      - schedule=Thu-Fri 09:00-19:00[America/Vancouver]
     actions:
       merge:
         method: merge
-    
+  - name: Merging an approved PR after 3 working days_2
+    conditions:
+      - "#approved-reviews-by>=1"
+      - label=automerge
+      - updated-at<5 days ago
+      - schedule=Mon-Wed 09:00-19:00[America/Vancouver]
+    actions:
+      merge:
+        method: merge
