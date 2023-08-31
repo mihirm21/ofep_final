@@ -1,8 +1,9 @@
-name: LABEL_PR
+name: COMMENT_PR
 
 on:
     pull_request_review:
       types: [submitted]
+    # pull_request:
  
 
 jobs:
@@ -10,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: 
         pull-requests: write 
-    if: github.event.review.state == 'approved'
+    if: ${{ github.event.review.state == 'approved' }}
     name: job for commenting on PR when approved
     steps:
       - name: Checkout
@@ -21,27 +22,29 @@ jobs:
         with:
           message: |
             Hello :wave:, The PR is eligible to merge. It will be automerged if not raised any issues.
-          reactions: eyes, rocket
-          GITHUB_TOKEN: ${{ secrets.ACTION_WRITE }}
+          # reactions: eyes, rocket
+          comment_tag: to_delete
           pr_number: ${{ github.event.pull_request.number }}
           create_if_not_exists: true
+
         
-#   delete_comment:
-#     runs-on: ubuntu-latest
-#     permissions: 
-#         pull-requests: write 
-#     if: github.event.review.state != 'approved'
-#     name: deleting the comment
-#     steps:
-#         - name: Write a comment that will be deleted at the end of the job
-#           uses: thollander/actions-comment-pull-request@v2
-#           with:
-#             message: |
-#                   The PR is being built...
-#             comment_tag: to_delete
-#             mode: delete
-#             GITHUB_TOKEN: ${{ secrets.ACTION_WRITE }}
-#             pr_number: ${{ github.event.pull_request.number }}
+  delete_comment:
+    runs-on: ubuntu-latest
+    permissions: 
+        pull-requests: write 
+    if: ${{ github.event.review.state != 'approved' }}
+    name: deleting the comment
+    steps:
+        - name: Write a comment that will be deleted at the end of the job
+          uses: thollander/actions-comment-pull-request@v2
+          with:
+            message: |
+                  Hello :wave:, The PR is eligible to merge. It will be automerged if not raised any issues.
+            comment_tag: to_delete
+            mode: delete
+            pr_number: ${{ github.event.pull_request.number }}
+            create_if_not_exists: false
+
 
 
         
